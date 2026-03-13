@@ -212,9 +212,10 @@ The code is released under the [Apache License 2.0](https://www.apache.org/licen
 ## Citation
 
 ```bibtex
-@inproceedings{xiao2026GeoMM,
-  title={},
-  author={},
-  year={2025}
+@inproceedings{xiao2026geomm,
+  title={GeoMMBench and GeoMMAgent: Toward Expert-Level Multimodal Intelligence in Geoscience and Remote Sensing},
+  author={Xiao, Aoran and Cheng, Shihao and Xu, Yonghao and Ren, Yexian and Chen, Hongruixuan and Yokoya, Naoto},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2026}
 }
 ```
