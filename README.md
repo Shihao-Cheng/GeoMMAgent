@@ -7,7 +7,6 @@
   <a href="https://arxiv.org/abs/XXXX.XXXXX">📄 Paper</a> |
   <a href="https://huggingface.co/datasets/GeoMM/GeoMMBench">🤗 Dataset</a> |
   <a href="https://geomm.github.io">🌐 Project Page</a> |
-  <a href="https://huggingface.co/spaces/GeoMM/GeoMMAgent">🤗 Demo</a>
 </p>
 
 <p align="center">
