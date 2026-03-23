@@ -5,7 +5,7 @@
 <p align="center">
   <a href="https://github.com/Shihao-Cheng/GeoMMAgent">💻 Code</a> |
   <a href="https://arxiv.org/abs/XXXX.XXXXX">📄 Paper</a> |
-  <a href="https://huggingface.co/datasets/GeoMM/GeoMMBench">🤗 Dataset</a> |
+  <a href="https://huggingface.co/datasets/AR-X/GeoMMBench">🤗 Dataset</a> |
   <a href="https://geomm.github.io">🌐 Project Page</a> |
 </p>
 
@@ -20,7 +20,7 @@
 ## News
 
 - `2026/03`: 🎉 GeoMMBench & GeoMMAgent is accepted by **CVPR 2026**!
-- `2026/03`: We release the GeoMMBench dataset on [🤗 Hugging Face](https://huggingface.co/datasets/GeoMM/GeoMMBench), containing 1,053 expert-level multiple-choice questions.
+- `2026/03`: We release the GeoMMBench dataset on [🤗 Hugging Face](https://huggingface.co/datasets/AR-X/GeoMMBench), containing 1,053 expert-level multiple-choice questions.
 - `2026/03`: Code for GeoMMAgent (coordinator, exec_agents, toolkit) is publicly available.
 
 ---
@@ -39,10 +39,10 @@
 
 | Toolkit | Capability (this repo) |
 |---------|---------------------------|
-| 🔧 General | Format conversion, filtering, scaling, neural super-resolution (Real-ESRGAN optional), etc. (`toolkit/general.py`) |
-| 🔍 Knowledge | Web search (short-circuit: DuckDuckGo → Google → Bing → Wikipedia text); optional image search + downloaded evidence images; **GME** text–image similarity to rank/filter candidates (`toolkit/gme_filter.py`, weights in config) |
-| 👁️ Perception | Scene classification & object detection (**YOLO11**); semantic segmentation (**DeepLabV3+ with Xception**, bundled under `toolkit/deeplabv3plus_xception/`, weights in config) |
-| 🧠 Reasoning | Reasoning & matching agents (multimodal LLM); option alignment in-agent |
+| 🔧General | Format conversion, filtering, scaling, neural super-resolution (Real-ESRGAN optional), etc. (`toolkit/general.py`) |
+| 🔍Knowledge | Web search (short-circuit: DuckDuckGo → Google → Bing → Wikipedia text); optional image search + downloaded evidence images; **GME** text–image similarity to rank/filter candidates (`toolkit/gme_filter.py`, weights in config) |
+| 👁️Perception | Scene classification & object detection (**YOLO11**); semantic segmentation (**DeepLabV3+ with Xception**, bundled under `toolkit/deeplabv3plus_xception/`, weights in config) |
+| 🧠Reasoning | Reasoning & matching agents (multimodal LLM); option alignment in-agent |
 
 | Agent | Role |
 |-------|------|
@@ -153,7 +153,7 @@ Default coordinator and per-agent models are defined in **`configs/GeoMMBench.ya
 
 ## Dataset
 
-GeoMMBench is on [🤗 Hugging Face](https://huggingface.co/datasets/GeoMM/GeoMMBench):
+GeoMMBench is on [🤗 Hugging Face](https://huggingface.co/datasets/AR-X/GeoMMBench):
 
 ```python
 from datasets import load_dataset
@@ -170,8 +170,8 @@ For `run/run_geomm.py --bench` and `run/run_benchmark_parallel.py`, export or sy
 
 | Component | Notes | Hugging Face |
 |-----------|--------|--------------|
-| YOLO11-cls | Scene classification | [GeoMM/yolo11-cls-millionaid](https://huggingface.co/GeoMM/yolo11-cls-millionaid) |
-| YOLO11-obb | DOTA-style detection | [GeoMM/yolo11-obb-dotav2](https://huggingface.co/GeoMM/yolo11-obb-dotav2) |
+| YOLO11-cls | Scene classification | [GeoMM/yolo11-cls-sft](https://huggingface.co/GeoMM/yolo11-cls-millionaid) |
+| YOLO11-obb | DOTA-style detection | [GeoMM/yolo11-obb-sft](https://huggingface.co/GeoMM/yolo11-obb-dotav2) |
 | DeepLabV3+ (LoveDA) | Semantic segmentation (Xception backbone, **same family** as `toolkit/deeplabv3plus_xception`) | [GeoMM/deeplabv3plus-loveda](https://huggingface.co/GeoMM/deeplabv3plus-loveda) |
 | GME | Multimodal embedding filter for search candidates | Local path in **`configs/GeoMMBench.yaml`** → `gme.model_path` (e.g. `weights/gme-Qwen2-VL-2B-Instruct`) |
 
