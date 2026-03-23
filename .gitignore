@@ -1,0 +1,73 @@
+# ── Python ─────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+pip-wheel-metadata/
+*.manifest
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Type checkers / linters / test
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.tox/
+.hypothesis/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.nox/
+
+# Secrets and local env (never commit real keys)
+.env
+.env.local
+.env.*.local
+*.pem
+secrets.yaml
+credentials.json
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Cursor (local workspace state; remove this line if you commit shared rules)
+.cursor/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# ── GeoMMAgent outputs & caches ────────────────
+results/
+temp_images/
+yolo_out/
+
+# Downloaded / generated weights (keep directory with .gitkeep if needed)
+weights/*.pt
+weights/*.pth
+weights/*.onnx
+weights/*.bin
+weights/*.safetensors
+
+# Optional local clone of Real-ESRGAN (see README / SuperResolutionAgent)
+Real-ESRGAN-master/
+
+# Logs & experiment trackers
+*.log
+wandb/
+mlruns/

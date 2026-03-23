@@ -1,0 +1,104 @@
+# GeoMMBench evaluation configuration
+
+# GME 检索过滤（toolkit/gme_filter.py）：与 YOLO/超分权重一样集中管理路径。
+# 环境变量 GEOMM_* 若已设置（如 .env），优先生效，不覆盖。
+gme:
+  model_path: weights/gme-Qwen2-VL-2B-Instruct
+  top_k: 12
+  img_batch: 8
+  max_evidence_images: 4
+
+coordinator:
+  model: qwen-vl-max
+  temperature: 0
+
+agents:
+  FormatConversionAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+  ImageFilterAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+  ScaleAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+  SuperResolutionAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+    # 神经超分：权重 + 第三方推理源码根目录（需 torch/basicsr 等）；可选 sr_tile 切块防 OOM
+    # Clone Real-ESRGAN into this directory next to weights/ (see README).
+    sr_repo: Real-ESRGAN-master
+    sr_weights: weights/RealESRGAN_x4plus.pth
+    # sr_tile: 400
+  ClsAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+    yolo_weights:
+      - path: weights/yolo11s-cls.pt
+        name: classify_remote_sensing_scene
+        description: "Remote sensing scene classification: airport, beach, bridge, commercial, dense-residential, desert, farmland, forest, industrial, meadow, mountain, park, parking, pond, port, railway-station, resort, river, runway, sparse-residential, stadium, storage-tank, viaduct (23+ classes)"
+      - path: weights/yolo11s-cls.pt
+        name: classify_land_use
+        description: "Land use / land cover classification: agricultural, urban, water, barren, vegetation, wetland"
+      - path: weights/yolo11s-cls.pt
+        name: classify_disaster_scene
+        description: "Disaster scene classification: flood, fire, earthquake damage, landslide, normal"
+  DetAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+    yolo_weights:
+      - path: weights/yolo11s-obb.pt
+        name: detect_dota_objects
+        description: "DOTA-v2 oriented object detection: Plane, Ship, Storage-tank, Baseball-diamond, Tennis-court, Basketball-court, Ground-track-field, Harbor, Bridge, Large-vehicle, Small-vehicle, Helicopter, Roundabout, Soccer-ball-field, Swimming-pool, Container-crane, Airport, Helipad (18 classes)"
+      - path: weights/yolo11s-obb.pt
+        name: detect_vehicles
+        description: "Vehicle detection in remote sensing: cars, trucks, buses and other ground vehicles"
+      - path: weights/yolo11s-obb.pt
+        name: detect_ships
+        description: "Ship and maritime vessel detection in ports and open water"
+  SegAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+    # DeepLabV3+ Xception 权重（LoveDA 等训练后导出；与 DeepLabV3Plus-Pytorch 仓库格式一致）
+    deeplab_weights:
+      - path: weights/deeplabv3plus-loveda.pth
+        name: segment_image
+        num_classes: 7
+        output_stride: 16
+        description: "Semantic segmentation (DeepLabV3+ Xception); per-class pixel area and ratio"
+  SearchAgent:
+    enabled: true
+    model: qwen-vl-max
+    temperature: 0
+  RetrievalAgent:
+    enabled: false
+    model: qwen-vl-max
+    temperature: 0
+  ReasoningAgent:
+    enabled: true
+    model: qvq-max
+    temperature: 0
+  MatchingAgent:
+    enabled: true
+    model: qwen-max
+    temperature: 0
+  SelfEvaluationAgent:
+    enabled: false
+    model: qwen-vl-max
+    temperature: 0
+
+benchmark:
+  # Path relative to the GeoMMAgent repository root (or absolute).
+  parquet_path: datasets/validation.parquet
+  limit: null
+  workers: 5
+  output_dir: results/
+  # 跑完后对每条 trace 做四维度自评；未通过写入 self_eval_failed.jsonl，供 run/run_second_pass.py 二次评判
+  self_eval: false

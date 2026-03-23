@@ -1,0 +1,36 @@
+# GeoMMAgent — Python dependencies (install from repository root: pip install -r requirements.txt)
+# PyTorch: for GPU, install the CUDA build from https://pytorch.org/ first, then this file.
+
+# --- CAMEL / agents / MCP stack (pinned where specified) ---
+camel-ai[owl]==0.2.84
+
+docx2markdown>=0.1.1
+gradio>=3.50.2
+mcp-simple-arxiv==0.2.2
+mcp-server-fetch==2025.1.17
+xmltodict>=0.14.2
+firecrawl>=2.5.3
+crawl4ai>=0.3.0
+retry==0.9.2
+
+# --- Vision / YOLO ---
+ultralytics
+
+# --- PyTorch ecosystem (versions: match your CUDA; see pytorch.org) ---
+torch
+torchvision
+tensorboard
+scipy
+numpy
+matplotlib
+opencv-python
+tqdm
+Pillow
+h5py
+
+# --- GeoMMAgent runtime (config, benchmarks, APIs) ---
+openai>=1.0.0
+python-dotenv>=1.0.0
+PyYAML>=6.0
+pandas>=2.0.0
+requests>=2.28.0
