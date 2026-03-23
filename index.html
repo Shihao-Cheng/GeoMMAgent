@@ -1,244 +1,539 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Your Name — 个人主页">
-  <title>Your Name</title>
+  <meta name="description" content="GeoMMBench & GeoMMAgent — CVPR 2026. A multimodal benchmark and multi-agent framework for geoscience and remote sensing.">
+  <title>GeoMMBench &amp; GeoMMAgent | CVPR 2026</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     :root {
-      --bg-page: #f5f6f8;
-      --bg-paper: #ffffff;
-      --text: #1a1d21;
-      --muted: #5c636a;
-      --link: #3273dc;
-      --link-hover: #2366d1;
-      --border: #e8eaed;
-      --pill-bg: #2b2d31;
-      --pill-text: #ffffff;
+      --bg: #ffffff;
+      --bg-soft: #fafafa;
+      --text: #24292f;
+      --muted: #57606a;
+      --link: #0969da;
+      --border: #d0d7de;
+      --btn-bg: #2d333b;
+      --btn-hover: #1c2128;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
       font-size: 1rem;
-      line-height: 1.7;
+      line-height: 1.65;
       color: var(--text);
-      background: var(--bg-page);
-      min-height: 100vh;
+      background: var(--bg);
     }
 
     a { color: var(--link); text-decoration: none; }
-    a:hover { color: var(--link-hover); text-decoration: underline; }
+    a:hover { text-decoration: underline; }
 
     .container {
-      max-width: 800px;
+      max-width: 880px;
       margin: 0 auto;
-      padding: 0 1.25rem;
+      padding: 0 1.5rem;
     }
 
-    /* Hero — 对应原模板 publication header */
+    /* —— Top: VFM-style hero —— */
     .hero {
-      background: var(--bg-paper);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 0 2.5rem;
+      padding: 3rem 0 2rem;
       text-align: center;
     }
 
     .hero .title {
-      font-size: clamp(1.35rem, 4vw, 2rem);
+      font-size: clamp(1.5rem, 3.8vw, 2.15rem);
       font-weight: 700;
-      line-height: 1.3;
-      max-width: 22ch;
-      margin: 0 auto 0.75rem;
+      line-height: 1.25;
+      max-width: 52rem;
+      margin: 0 auto 1.25rem;
     }
 
-    .hero .authors {
-      font-size: 1rem;
-      color: var(--muted);
+    .publication-authors {
+      font-size: 1.05rem;
+      color: var(--text);
       margin-bottom: 0.35rem;
+      line-height: 1.8;
     }
 
-    .hero .affil {
-      font-size: 0.9375rem;
+    .author-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0 0.15rem;
+      row-gap: 0.4rem;
+      font-family: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+      font-size: 1.08rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .author-block { white-space: nowrap; }
+    .author-block a { color: var(--link); }
+    .author-line sup { font-size: 0.7em; font-weight: normal; }
+
+    .author-notes {
+      font-family: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+      font-size: 0.88rem;
       color: var(--muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.85rem;
     }
 
-    .hero .links {
+    .affil-block {
+      font-family: "Times New Roman", Times, "Liberation Serif", Georgia, serif;
+      font-size: 0.98rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+      text-align: center;
+    }
+
+    .affil-block p { margin: 0 0 0.35rem; }
+    .affil-block p:last-child { margin-bottom: 0; }
+    .affil-block sup { font-size: 0.65em; }
+
+    .publication-links {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 0.65rem;
     }
 
-    .hero .links a {
+    .link-block .button {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      font-size: 0.875rem;
+      gap: 0.45rem;
+      font-size: 0.95rem;
       font-weight: 500;
-      color: var(--pill-text);
-      background: var(--pill-bg);
-      padding: 0.5rem 1.1rem;
+      color: #fff;
+      background: var(--btn-bg);
+      padding: 0.55rem 1.15rem;
       border-radius: 999px;
       text-decoration: none;
-      border: 1px solid transparent;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
     }
 
-    .hero .links a:hover {
-      opacity: 0.92;
-      color: var(--pill-text);
+    .link-block .button:hover {
+      background: var(--btn-hover);
+      color: #fff;
       text-decoration: none;
     }
 
-    /* Section — 对应 Abstract / Method / BibTeX */
-    .section {
-      padding: 2.25rem 0;
-    }
+    .link-block .button .icon { font-size: 0.95em; opacity: 0.95; }
 
-    .section:nth-child(even) {
-      background: var(--bg-paper);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
+    /* Teaser */
+    .teaser-wrap {
+      padding: 0.5rem 0 2rem;
       text-align: center;
     }
 
-    .section .content {
+    .teaser-wrap figure {
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .teaser-wrap img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+    }
+
+    .teaser-caption {
+      margin-top: 1rem;
+      font-size: 0.98rem;
       color: var(--muted);
+      text-align: center;
+      max-width: 52rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+
+    /* Sections */
+    .section {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .section h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .content {
+      color: var(--muted);
+    }
+
+    .content.has-text-justified {
       text-align: justify;
       hyphens: auto;
     }
 
-    .section .content p + p {
-      margin-top: 0.85rem;
-    }
+    .content p { margin-bottom: 0.85rem; }
+    .content p:last-child { margin-bottom: 0; }
 
-    .figure {
-      margin: 1.25rem auto 0;
-      max-width: 100%;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      background: linear-gradient(145deg, #eef1f4 0%, #f8f9fa 100%);
-      min-height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      font-size: 0.875rem;
-      padding: 1rem;
+    .content strong { color: var(--text); font-weight: 600; }
+
+    .figure-block {
+      margin-top: 1.25rem;
       text-align: center;
     }
 
-    .figure img {
+    .figure-block img {
       max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-      display: block;
+      border-radius: 6px;
+      border: 1px solid var(--border);
     }
 
-    pre.cite {
+    .figure-block p.caption {
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th { background: var(--bg-soft); color: var(--text); font-weight: 600; }
+
+    code {
       font-family: ui-monospace, Menlo, Consolas, monospace;
-      font-size: 0.75rem;
-      line-height: 1.6;
-      background: var(--bg-page);
+      font-size: 0.88em;
+      background: var(--bg-soft);
+      padding: 0.12em 0.4em;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      font-family: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      background: var(--bg-soft);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 1rem 1.15rem;
+      padding: 1rem 1.1rem;
       overflow-x: auto;
-      color: var(--muted);
-      white-space: pre-wrap;
-      word-break: break-word;
+      margin: 0.75rem 0;
     }
+
+    pre code {
+      font-size: inherit;
+      background: transparent;
+      border: 0;
+      padding: 0;
+    }
+
+    .columns.news ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+      color: var(--muted);
+    }
+
+    .columns.news li { margin-bottom: 0.35rem; }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .badge-row img { height: 22px; vertical-align: middle; }
 
     footer.footer {
       padding: 2rem 0;
-      font-size: 0.8125rem;
-      color: var(--muted);
       text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
     }
 
-    footer.footer a { color: var(--link); }
+    footer a { color: var(--link); }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 1.25rem 0 0.5rem;
+      text-align: left;
+    }
+
+    .subsection { margin-top: 1rem; }
   </style>
 </head>
 <body>
 
-  <!-- ========== 将下方 Your Name、单位、链接 href 改成你的信息 ========== -->
-
+  <!-- ========== Top: layout aligned with academic project pages (e.g. VFM-6D) ========== -->
   <section class="hero">
     <div class="container">
-      <h1 class="title">Your Name</h1>
-      <p class="authors">示例职位 · 研究方向关键词</p>
-      <p class="affil"><sup>1</sup>某某大学某某实验室 &nbsp;·&nbsp; City, Country</p>
-      <div class="links">
-        <a href="mailto:you@example.com">✉ Email</a>
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
-        <a href="https://twitter.com/" target="_blank" rel="noopener">X / Twitter</a>
-      </div>
-    </div>
-  </section>
+      <h1 class="title publication-title">GeoMMBench &amp; GeoMMAgent: A Multimodal Benchmark and Multi-Agent Framework for GeoScience and Remote Sensing</h1>
 
-  <section class="section">
-    <div class="container">
-      <h2>About</h2>
-      <div class="content">
-        <p>
-          在这里写一段自我介绍：教育背景、研究兴趣、近期关注方向等。可参考原模板 Abstract 段落长度，保持简洁易读。
-        </p>
-        <p>
-          第二段可写合作、开源项目、获奖或教学等。保存为单文件即可部署到 GitHub Pages 或任意静态托管。
-        </p>
+      <div class="author-line publication-authors" aria-label="Authors">
+        <span class="author-block"><a href="#">Aoran Xiao</a><sup>*</sup><sup>1</sup><sup>†</sup>,</span>
+        <span class="author-block"><a href="https://github.com/Shihao-Cheng" target="_blank" rel="noopener">Shihao Cheng</a><sup>*</sup><sup>2</sup>,</span>
+        <span class="author-block"><a href="#">Yonghao Xu</a><sup>3</sup>,</span>
+        <span class="author-block"><a href="#">Yexian Ren</a><sup>5</sup>,</span>
+        <span class="author-block"><a href="#">Hongruixuan Chen</a><sup>1</sup><sup>4</sup>,</span>
+        <span class="author-block"><a href="#">Naoto Yokoya</a><sup>1</sup><sup>4</sup></span>
       </div>
-    </div>
-  </section>
+      <p class="author-notes"><sup>*</sup> Equal contribution &nbsp;&nbsp;&nbsp; <sup>†</sup> Corresponding author</p>
 
-  <section class="section">
-    <div class="container">
-      <h2>Highlights</h2>
-      <div class="content">
-        <p>对应原模板 Method Overview：可放代表性工作示意图。将图片放到本目录 <code style="background:var(--bg-page);padding:0 .25rem;border-radius:3px;font-size:0.9em;">web/</code> 后，把下面占位块换成 <code style="background:var(--bg-page);padding:0 .25rem;border-radius:3px;font-size:0.9em;">&lt;img src="photo.png" alt="..."&gt;</code>。</p>
-        <div class="figure" id="figure-placeholder">
-          （占位）在此放入 &lt;img&gt; 或替换本 div 为图片
+      <div class="affil-block">
+        <p>
+          <sup>1</sup> RIKEN AIP &nbsp;&nbsp;&nbsp;
+          <sup>2</sup> Wuhan University &nbsp;&nbsp;&nbsp;
+          <sup>3</sup> Linköping University &nbsp;&nbsp;&nbsp;
+          <sup>4</sup> University of Tokyo
+        </p>
+        <p><sup>5</sup> Nanjing University of Information Science and Technology</p>
+      </div>
+
+      <div class="badge-row" aria-hidden="true">
+        <img src="https://img.shields.io/badge/CVPR-2026-blue" alt="CVPR 2026">
+        <img src="https://img.shields.io/badge/License-Apache%202.0-green" alt="Apache 2.0">
+        <img src="https://img.shields.io/badge/Python-3.10+-yellow" alt="Python 3.10+">
+      </div>
+
+      <div class="column has-text-centered" style="margin-top:1.25rem">
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/XXXX.XXXXX" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
+              <span>Paper</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://github.com/Shihao-Cheng/GeoMMAgent" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fab fa-github"></i></span>
+              <span>Code</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://huggingface.co/datasets/AR-X/GeoMMBench" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">🤗</span>
+              <span>Dataset</span>
+            </a>
+          </span>
+          <span class="link-block">
+            <a href="https://geomm.github.io" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon"><i class="fas fa-globe"></i></span>
+              <span>Project Page</span>
+            </a>
+          </span>
         </div>
-        <p style="margin-top: 1rem; text-align: center; font-size: 0.9375rem;">
-          一句话说明上图或你的核心项目。
-        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaser: prefer GitHub-hosted figures from README; fallback to local placeholder -->
+  <section class="teaser-wrap">
+    <div class="container">
+      <figure>
+        <img
+          id="teaser-img"
+          src="https://raw.githubusercontent.com/Shihao-Cheng/GeoMMAgent/main/assets/benchmark_examples.png"
+          alt="GeoMMBench overview examples"
+          onerror="this.onerror=null;this.src='images/teaser-reference.png';"
+        >
+      </figure>
+      <p class="teaser-caption">
+        <strong>GeoMMBench</strong> provides expert-level, image-based multiple-choice questions across remote sensing, photogrammetry, GIS, and GNSS, with diverse sensor modalities and tasks.
+        <strong>GeoMMAgent</strong> follows a plan–execute–evaluate pipeline with toolkits for general preprocessing, knowledge retrieval, perception (YOLO11 / DeepLabV3+), and multimodal reasoning.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              We present <strong>GeoMMBench</strong>, a comprehensive multimodal question-answering benchmark for geoscience and remote sensing, featuring <strong>1,053 expert-level, image-based multiple-choice questions</strong> spanning four disciplines (Remote Sensing, Photogrammetry, GIS, GNSS), six sensor modalities (Optical, SAR, Hyperspectral, LiDAR, DEM, Thermal), and diverse tasks such as scene classification, object and change detection, spectral analysis, and spatial reasoning.
+            </p>
+            <p>
+              We further introduce <strong>GeoMMAgent</strong>, a multi-agent framework that follows a <strong>plan–execute–evaluate</strong> paradigm: a coordinator decomposes tasks; specialized agents handle general preprocessing, web and multimodal retrieval (including GME-based filtering), perception with YOLO11 and DeepLabV3+, and reasoning for option alignment. GeoMMBench evaluates 36+ vision-language models in zero-shot settings; GeoMMAgent achieves strong performance. The dataset is released on Hugging Face; code and configurations are publicly available.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <h2>Selected publications</h2>
-      <div class="content">
-        <p>若需要 BibTeX，可保留一块；否则删掉本节或改成「News」列表。</p>
-        <pre class="cite">@article{yourkey2026,
-  title   = {Your Paper Title},
-  author  = {Your Name and Coauthor},
-  journal = {Conference or Journal},
-  year    = {2026}
-}</pre>
+      <h2 class="title is-3">News</h2>
+      <div class="content columns news">
+        <ul>
+          <li><strong>2026/03:</strong> GeoMMBench &amp; GeoMMAgent accepted by <strong>CVPR 2026</strong>.</li>
+          <li><strong>2026/03:</strong> GeoMMBench released on <a href="https://huggingface.co/datasets/AR-X/GeoMMBench" target="_blank" rel="noopener">Hugging Face</a> (1,053 questions).</li>
+          <li><strong>2026/03:</strong> GeoMMAgent code (coordinator, exec_agents, toolkit) open-sourced.</li>
+        </ul>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-3">Method / Framework Overview</h2>
+      <div class="content has-text-centered figure-block">
+        <img
+          src="https://raw.githubusercontent.com/Shihao-Cheng/GeoMMAgent/main/assets/agent_framework.png"
+          alt="GeoMMAgent framework"
+          onerror="this.style.display='none'"
+        >
+        <p class="caption">Coordinator orchestrates agents; toolkits cover general utilities, knowledge retrieval, perception, and reasoning.</p>
+      </div>
+
+      <h3>Toolkits (this repository)</h3>
+      <div class="content">
+        <table>
+          <thead>
+            <tr><th>Toolkit</th><th>Capability</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>General</td>
+              <td>Format conversion, filtering, scaling, optional neural super-resolution, etc.</td>
+            </tr>
+            <tr>
+              <td>Knowledge</td>
+              <td>Web search (multi-engine fallback); optional image search; <strong>GME</strong> text–image similarity for candidate ranking</td>
+            </tr>
+            <tr>
+              <td>Perception</td>
+              <td>YOLO11 classification &amp; detection; DeepLabV3+ (Xception) segmentation</td>
+            </tr>
+            <tr>
+              <td>Reasoning</td>
+              <td>Multimodal LLM reasoning and in-agent option alignment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Agents</h3>
+      <div class="content">
+        <table>
+          <thead>
+            <tr><th>Agent</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Coordinator</td><td>Planning, decomposition, orchestration</td></tr>
+            <tr><td>Perception (Cls / Det / Seg)</td><td>Classification, detection, DeepLab segmentation</td></tr>
+            <tr><td>Search</td><td>Retrieval and evidence images for VLMs</td></tr>
+            <tr><td>Reasoning / Matching</td><td>Multi-step inference and MCQ alignment</td></tr>
+            <tr><td>Self-Evaluation</td><td>Optional quality check</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-3">Benchmark Results</h2>
+      <p class="content has-text-justified" style="text-align:center;max-width:42rem;margin:0 auto 1rem;color:var(--muted)">
+        GeoMMBench evaluates <strong>36+ vision-language models</strong> under zero-shot conditions. GeoMMAgent achieves strong performance. See the <a href="https://arxiv.org/abs/XXXX.XXXXX">paper</a> for full results.
+      </p>
+      <div class="figure-block">
+        <img
+          src="https://raw.githubusercontent.com/Shihao-Cheng/GeoMMAgent/main/assets/benchmark_results.png"
+          alt="Benchmark results"
+          onerror="this.style.display='none'"
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content">
+      <h2 class="title is-3">GeoMMAgent Architecture</h2>
+      <pre>coordinator/
+  ├── coordinator.py        ← Dispatch → sequential execution, multi-image context
+  └── prompts.py
+
+exec_agents/
+  ├── general/              ← Preprocess agents
+  ├── perception/           ← ClsAgent, DetAgent, SegAgent (DeepLab)
+  ├── knowledge/            ← SearchAgent (+ evidence images)
+  ├── reasoning/            ← ReasoningAgent, MatchingAgent
+  └── evaluation/           ← SelfEvaluationAgent (optional)
+
+configs/
+  └── GeoMMBench.yaml       ← Coordinator & agent settings
+
+toolkit/
+  ├── general.py
+  ├── classification_toolkit.py   ← YOLO11 classification
+  ├── detection_toolkit.py        ← YOLO11 OBB detection
+  ├── segmentation_toolkit.py   ← DeepLabV3+ (Xception)
+  ├── deeplabv3plus_xception/
+  ├── gme_filter.py
+  ├── knowledge.py
+  ├── reasoning.py
+  ├── super_resolution.py
+  └── data_loader.py            ← GeoMMBench data loader</pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content">
+      <h2 class="title is-3">Dataset</h2>
+      <pre>from datasets import load_dataset
+ds = load_dataset("AR-X/GeoMMBench")</pre>
+      <p>Each sample includes <code>image</code>, <code>question</code>, option texts <code>A</code>–<code>D</code>, and <code>answer</code> (see the <a href="https://huggingface.co/datasets/AR-X/GeoMMBench" target="_blank" rel="noopener">dataset card</a> for splits).</p>
+    </div>
+  </section>
+
+  <section class="section" id="BibTeX">
+    <div class="container content">
+      <h2 class="title is-3">BibTeX</h2>
+      <pre><code>@inproceedings{xiao2026geomm,
+  title={GeoMMBench and GeoMMAgent: Toward Expert-Level Multimodal Intelligence in Geoscience and Remote Sensing},
+  author={Xiao, Aoran and Cheng, Shihao and Xu, Yonghao and Ren, Yexian and Chen, Hongruixuan and Yokoya, Naoto},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year={2026}
+}</code></pre>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container content" style="text-align:center">
+      <p style="color:var(--muted);font-size:0.95rem">
+        GeoMMBench dataset: <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> ·
+        Code: <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a>
+      </p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>© <span id="y"></span> Your Name · 个人主页</p>
-      <p style="margin-top:0.5rem">页面结构参考常见学术项目页模板；样式为浅色单栏布局。</p>
+      <p>Page layout inspired by common CVPR project templates (e.g. <a href="https://vfm-6d.github.io" target="_blank" rel="noopener">VFM-6D</a>, <a href="https://github.com/nerfies/nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>).</p>
     </div>
   </footer>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
