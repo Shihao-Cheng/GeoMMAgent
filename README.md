@@ -96,8 +96,6 @@ toolkit/
   └── data_loader.py            ← GeoMMBench parquet loader
 ```
 
-![Code Architecture](assets/code_architecture.png)
-
 ---
 
 ## Quick Start
