@@ -19,6 +19,7 @@
 
 ## News
 
+- `2026/04/09`: ⭐ GeoMMBench & GeoMMAgent is selected as a **CVPR 2026 Highlight**!
 - `2026/03/23`: 🎉 GeoMMBench & GeoMMAgent is accepted by **CVPR 2026**!
 - `2026/03/23`: We release the GeoMMBench dataset on [🤗 Hugging Face](https://huggingface.co/datasets/AR-X/GeoMMBench), containing 1,053 expert-level multiple-choice questions.
 - `2026/03/23`: Code for GeoMMAgent (coordinator, exec_agents, toolkit) is publicly available.
