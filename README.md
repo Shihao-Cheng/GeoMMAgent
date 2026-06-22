@@ -171,8 +171,8 @@ For `run/run_geomm.py --bench` and `run/run_benchmark_parallel.py`, export or sy
 
 | Component | Notes | Weights |
 |-----------|--------|--------------|
-| YOLO11-cls | Scene classification | [shihao111/GeoMMAgent · yolo11s-cls-sft.pt](https://huggingface.co/shihao111/GeoMMAgent/blob/main/yolo11s-cls-sft.pt) |
-| YOLO11-obb | DOTA-style detection | [shihao111/GeoMMAgent · yolo11s-obb.pt](https://huggingface.co/shihao111/GeoMMAgent/blob/main/yolo11s-obb.pt) |
+| YOLO11-cls | Scene classification | [shihaocheng/GeoMMAgent · yolo11s-cls-sft.pt](https://huggingface.co/shihaocheng/GeoMMAgent/blob/main/yolo11s-cls-sft.pt) |
+| YOLO11-obb | DOTA-style detection | [shihaocheng/GeoMMAgent · yolo11s-obb.pt](https://huggingface.co/shihaocheng/GeoMMAgent/blob/main/yolo11s-obb.pt) |
 | DeepLabV3+ (LoveDA) | Semantic segmentation (Xception backbone, **same family** as `toolkit/deeplabv3plus_xception`) | [open-mmlab/mmsegmentation · deeplabv3plus](https://github.com/open-mmlab/mmsegmentation/tree/main/configs/deeplabv3plus) |
 | GME | Multimodal embedding filter for search candidates | Local path in **`configs/GeoMMBench.yaml`** → `gme.model_path` (e.g. `weights/gme-Qwen2-VL-2B-Instruct`) |
 
