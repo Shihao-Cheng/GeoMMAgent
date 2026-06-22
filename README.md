@@ -169,11 +169,11 @@ For `run/run_geomm.py --bench` and `run/run_benchmark_parallel.py`, export or sy
 
 ## Model weights
 
-| Component | Notes | Hugging Face |
+| Component | Notes | Weights |
 |-----------|--------|--------------|
-| YOLO11-cls | Scene classification | [GeoMM/yolo11-cls-sft](https://huggingface.co/GeoMM/yolo11-cls-millionaid) |
-| YOLO11-obb | DOTA-style detection | [GeoMM/yolo11-obb-sft](https://huggingface.co/GeoMM/yolo11-obb-dotav2) |
-| DeepLabV3+ (LoveDA) | Semantic segmentation (Xception backbone, **same family** as `toolkit/deeplabv3plus_xception`) | [GeoMM/deeplabv3plus-loveda](https://huggingface.co/GeoMM/deeplabv3plus-loveda) |
+| YOLO11-cls | Scene classification | [shihao111/GeoMMAgent · yolo11s-cls-sft.pt](https://huggingface.co/shihao111/GeoMMAgent/blob/main/yolo11s-cls-sft.pt) |
+| YOLO11-obb | DOTA-style detection | [shihao111/GeoMMAgent · yolo11s-obb.pt](https://huggingface.co/shihao111/GeoMMAgent/blob/main/yolo11s-obb.pt) |
+| DeepLabV3+ (LoveDA) | Semantic segmentation (Xception backbone, **same family** as `toolkit/deeplabv3plus_xception`) | [open-mmlab/mmsegmentation · deeplabv3plus](https://github.com/open-mmlab/mmsegmentation/tree/main/configs/deeplabv3plus) |
 | GME | Multimodal embedding filter for search candidates | Local path in **`configs/GeoMMBench.yaml`** → `gme.model_path` (e.g. `weights/gme-Qwen2-VL-2B-Instruct`) |
 
 Place downloaded files under **`weights/`** (or use absolute paths) and align **`SegAgent.deeplab_weights`** (`path`, `num_classes`, `output_stride`) with how each checkpoint was trained. Classification/detection paths are set in **`configs/GeoMMBench.yaml`** under each agent.
