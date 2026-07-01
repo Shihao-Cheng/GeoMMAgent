@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://github.com/Shihao-Cheng/GeoMMAgent">💻 Code</a> |
-  <a href="https://arxiv.org/abs/XXXX.XXXXX">📄 Paper</a> |
+  <a href="https://arxiv.org/abs/2604.08896">📄 Paper</a> |
   <a href="https://huggingface.co/datasets/AR-X/GeoMMBench">🤗 Dataset</a> |
   <a href="https://geo-mm-agi.github.io">🌐 Project Page</a> |
 </p>
